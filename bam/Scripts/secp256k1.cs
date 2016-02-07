@@ -28,6 +28,12 @@ namespace bitcoin
                     compiler.PreprocessorDefines.Add("USE_SCALAR_INV_BUILTIN");
 
                     compiler.PreprocessorDefines.Add("ENABLE_MODULE_RECOVERY");
+
+                    var vcCompiler = settings as VisualCCommon.ICommonCompilerSettings;
+                    if (null != vcCompiler)
+                    {
+                        vcCompiler.WarningLevel = VisualCCommon.EWarningLevel.Level2;
+                    }
                 });
         }
     }

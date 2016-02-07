@@ -24,6 +24,12 @@ namespace bitcoin
 
                         var cxxCompiler = settings as C.ICxxOnlyCompilerSettings;
                         cxxCompiler.ExceptionHandler = C.Cxx.EExceptionHandler.Asynchronous;
+
+                        var vcCompiler = settings as VisualCCommon.ICommonCompilerSettings;
+                        if (null != vcCompiler)
+                        {
+                            vcCompiler.WarningLevel = VisualCCommon.EWarningLevel.Level2;
+                        }
                     });
             }
         }

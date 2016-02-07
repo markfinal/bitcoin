@@ -16,6 +16,12 @@ namespace bitcoin
                 {
                     var compiler = settings as C.ICommonCompilerSettings;
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src/univalue/include"));
+
+                    var vcCompiler = settings as VisualCCommon.ICommonCompilerSettings;
+                    if (null != vcCompiler)
+                    {
+                        vcCompiler.WarningLevel = VisualCCommon.EWarningLevel.Level2;
+                    }
                 });
 
             if (this.BuildEnvironment.Platform.Includes(EPlatform.Windows))

@@ -42,6 +42,12 @@ namespace bitcoin
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src"));
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src/univalue/include"));
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src/secp256k1/include"));
+
+                    var vcCompiler = settings as VisualCCommon.ICommonCompilerSettings;
+                    if (null != vcCompiler)
+                    {
+                        vcCompiler.WarningLevel = VisualCCommon.EWarningLevel.Level2;
+                    }
                 });
 
             this.CompileAgainst<boost.BoostHeaders>(source);

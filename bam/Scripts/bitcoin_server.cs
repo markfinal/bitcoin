@@ -50,6 +50,12 @@ namespace bitcoin
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src"));
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src/univalue/include"));
                     compiler.IncludePaths.AddUnique(this.CreateTokenizedString("$(packagedir)/src/leveldb/include"));
+
+                    var vcCompiler = settings as VisualCCommon.ICommonCompilerSettings;
+                    if (null != vcCompiler)
+                    {
+                        vcCompiler.WarningLevel = VisualCCommon.EWarningLevel.Level1;
+                    }
                 });
 
             this.CompileAgainst<boost.BoostHeaders>(source);
