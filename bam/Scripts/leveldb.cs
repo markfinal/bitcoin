@@ -14,9 +14,9 @@ namespace bitcoin
 
             this.CreateHeaderContainer("$(packagedir)/src/leveldb/db/*.h");
             var source = this.CreateCxxSourceContainer("$(packagedir)/src/leveldb/db/*.cc",
-                filter: new System.Text.RegularExpressions.Regex(@"^((?!.*_test).*)$"));
+                filter: new System.Text.RegularExpressions.Regex(@"^((?!.*_test)(?!.*_bench)(?!.*_main).*)$"));
             source.AddFiles("$(packagedir)/src/leveldb/util/*.cc",
-                filter: new System.Text.RegularExpressions.Regex(@"^((?!.*env_).*)$"));
+                filter: new System.Text.RegularExpressions.Regex(@"^((?!.*env_)(?!.*_test).*)$"));
             source.AddFiles("$(packagedir)/src/leveldb/helpers/memenv/memenv.cc");
             source.AddFiles("$(packagedir)/src/leveldb/table/*.cc",
                 filter: new System.Text.RegularExpressions.Regex(@"^((?!.*_test).*)$"));
