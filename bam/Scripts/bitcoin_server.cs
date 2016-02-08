@@ -58,7 +58,8 @@ namespace bitcoin
                     }
                 });
 
-            this.CompileAgainst<boost.BoostHeaders>(source);
+            // publicly, because the dependency pokes out of a header file, in src/sync.h
+            this.CompileAgainstPublicly<boost.Thread>(source);
 
             if (this.BuildEnvironment.Platform.Includes(EPlatform.Windows))
             {
