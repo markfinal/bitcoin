@@ -12,6 +12,7 @@
     <Package name="NativeBuilder" />
     <Package name="openssl" version="1.0.2" />
     <Package name="Publisher" />
+    <Package name="VisualC" version="11.0" default="true" />
     <Package name="VisualC" version="12.0" />
     <Package name="VSSolutionBuilder" />
   </Dependents>
