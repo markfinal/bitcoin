@@ -1,7 +1,7 @@
 using Bam.Core;
 namespace bitcoin
 {
-    sealed class bitcoind :
+    class bitcoind :
         C.Cxx.ConsoleApplication
     {
         protected override void
@@ -65,6 +65,25 @@ namespace bitcoin
             // TODO: this shouldn't be required, because dependent modules use it, but this does seem necessary
             this.LinkAgainst<openssl.OpenSSL>();
             this.LinkAgainst<libevent.libevent>();
+        }
+    }
+
+    sealed class bitcoindRuntime :
+        Publisher.Collation
+    {
+        protected override void
+        Init(
+            Bam.Core.Module parent)
+        {
+            base.Init(parent);
+
+            var app = this.Include<bitcoind>(C.Cxx.ConsoleApplication.Key, EPublishingType.ConsoleApplication);
+            this.Include<boost.ProgramOptions>(C.Cxx.DynamicLibrary.Key, ".", app);
+            this.Include<boost.FileSystem>(C.Cxx.DynamicLibrary.Key, ".", app);
+            this.Include<boost.System>(C.Cxx.DynamicLibrary.Key, ".", app);
+            this.Include<boost.Chrono>(C.Cxx.DynamicLibrary.Key, ".", app);
+            this.Include<boost.Thread>(C.Cxx.DynamicLibrary.Key, ".", app);
+            this.Include<boost.DateTime>(C.Cxx.DynamicLibrary.Key, ".", app);
         }
     }
 }
