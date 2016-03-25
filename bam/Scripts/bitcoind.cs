@@ -35,7 +35,7 @@ namespace bitcoin
                     var cxxCompiler = settings as C.ICxxOnlyCompilerSettings;
                     cxxCompiler.ExceptionHandler = C.Cxx.EExceptionHandler.Asynchronous;
                 });
-                this.CompilePubliclyAndLinkAgainst<WindowsSDK.WindowsSDK>(source);
+                this.CompileAndLinkAgainst<WindowsSDK.WindowsSDK>(source);
 
                 this.PrivatePatch(settings =>
                     {
